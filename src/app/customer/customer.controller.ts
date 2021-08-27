@@ -5,7 +5,10 @@ import {response, Response} from "express";
 import {CustomerListDto} from "./dtos/customer-list.dto";
 import {get} from "http";
 
-@Controller('api/customers')
+@Controller({
+    path: 'customers',
+    version: '1'
+})
 export class CustomerController {
     constructor(private customerService: CustomerService) {
     }
