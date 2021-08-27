@@ -7,7 +7,7 @@ export class RegisterNewCustomerValidation extends CustomerValidation {
         super(command);
     }
 
-    validate(): ValidationContract {
+    validate = (): ValidationContract => {
         this.validateName();
         this.validateEmail();
         this.validateBirthDate();

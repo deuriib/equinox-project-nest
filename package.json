@@ -26,6 +26,8 @@
     "@nestjs/cqrs": "^8.0.0",
     "@nestjs/mapped-types": "^1.0.0",
     "@nestjs/platform-express": "^8.0.0",
+    "class-transformer": "^0.4.0",
+    "class-validator": "^0.13.1",
     "fluent-validator-typescript": "^1.0.21",
     "guid-typescript": "^1.0.9",
     "luxon": "^2.0.2",

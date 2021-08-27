@@ -2,7 +2,10 @@
 import {DomainCommand} from "../../core/messaging/domain-command";
 
 export abstract class CustomerCommand extends DomainCommand {
-    protected constructor(readonly name: string, readonly email: string, readonly birthDate: Date, readonly id: Guid = Guid.createEmpty()) {
+    protected constructor(readonly name: string, 
+                          readonly email: string, 
+                          readonly birthDate: Date, 
+                          readonly id: Guid = Guid.createEmpty()) {
         super();
     }
 }

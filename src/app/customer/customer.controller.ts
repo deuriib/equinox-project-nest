@@ -1,5 +1,5 @@
 ﻿import {CustomerService} from "./services/customer.service";
-import {Body, Controller, HttpStatus, Post, Res} from "@nestjs/common";
+import {BadRequestException, Body, Controller, HttpStatus, Post, Res} from "@nestjs/common";
 import {CreateCustomerDto} from "./dtos/create-customer.dto";
 import {response, Response} from "express";
 
@@ -13,11 +13,9 @@ export class CustomerController {
         const validation = await this.customerService.createCustomer(dto);
 
         if (validation.invalid) {
-            const response = {
-                code: HttpStatus.BAD_REQUEST,
-                errors: validation.notifications.Select(error => error.message).ToArray(),
-            };
-            return res.status(response.code).json(response);
+            throw new BadRequestException(
+                validation.notifications.Select(error => error.message).ToArray()
+            );
         }
 
         return res.status(HttpStatus.CREATED);

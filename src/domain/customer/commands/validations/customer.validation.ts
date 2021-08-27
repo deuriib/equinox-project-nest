@@ -16,7 +16,7 @@ export abstract class CustomerValidation extends DomainValidator {
     }
 
     protected validateBirthDate(): void {
-        const birthDate = DateTime.fromFormat(this.command.birthDate.toString(), 'dd/MM/yyyy');
+        const birthDate = DateTime.fromFormat(this.command.birthDate.toString(), 'yyyy-MM-dd');
         this.isTrue(birthDate.isValid, 'birthDate', 'Please ensure you enter a BirthDate');
         this.isTrue(this.haveMinimumAge(birthDate), 'birthDate', 'The customer must have 18 years or more');
     }
