@@ -1,11 +1,18 @@
 ﻿import {CustomerService} from "./services/customer.service";
-import {BadRequestException, Body, Controller, HttpStatus, Post, Res} from "@nestjs/common";
+import {BadRequestException, Body, Controller, Get, HttpStatus, Post, Res} from "@nestjs/common";
 import {CreateCustomerDto} from "./dtos/create-customer.dto";
 import {response, Response} from "express";
+import {CustomerListDto} from "./dtos/customer-list.dto";
+import {get} from "http";
 
 @Controller('api/customers')
 export class CustomerController {
     constructor(private customerService: CustomerService) {
+    }
+    
+    @Get()
+    async getAllCustomers() {
+        return await this.customerService.getAllCustomers();
     }
 
     @Post()
