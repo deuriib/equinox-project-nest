@@ -5,9 +5,13 @@ import {HttpExceptionFilter} from "./app/common/filters/http-exception-filter";
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
-    app.setGlobalPrefix('api', {
-        exclude: ['/']
-    })
+    app.enableCors({
+        origin: ['http://localhost:3000'],
+        methods: ['GET','POST','PUT','PATCH','DELETE', 'OPTIONS'],
+        allowedHeaders: ['Accept', 'Content-Type', 'api-version', 'Authorization'],
+        exposedHeaders: ['api-version']
+    });
+    app.setGlobalPrefix('api')
     app.enableVersioning({
         type: VersioningType.HEADER,
         header: 'api-version',
@@ -17,6 +21,8 @@ async function bootstrap() {
         transform: true,
     }));
     await app.listen(3000);
+    
+    return app;
 }
 
-bootstrap().then(() => console.info(''));
+bootstrap().then(async (app) => console.info(`Running app in ${await app.getUrl() }`));
