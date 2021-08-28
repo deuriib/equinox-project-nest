@@ -4,6 +4,7 @@ import {DomainCommandHandler} from "../../../core/messaging/domain-command-handl
 import {Customer} from "../../models/customer.model";
 import {Guid} from "guid-typescript";
 import {ValidationContract} from "fluent-validator-typescript";
+import {CustomerDomainService} from "../../services/customer-domain.service";
 
 @CommandHandler(RegisterNewCustomerCommand)
 export class CustomerCommandHandler extends DomainCommandHandler
@@ -19,10 +20,8 @@ export class CustomerCommandHandler extends DomainCommandHandler
         }
         
         const customer = this.eventBus.mergeObjectContext(
-            new Customer(Guid.create())
+            CustomerDomainService.createNewCustomer(command.name, command.email, command.birthDate)
         );
-        
-        customer.create(command.name, command.email, command.birthDate);
         
         //TODO:Repository create customer 
         

@@ -2,9 +2,7 @@
 import {Guid} from "guid-typescript";
 
 export class CustomerListDto {
-    constructor(readonly id: Guid,
-                readonly name: string,
-                readonly email: string) {
-    }
-    
+    id: Guid;
+    name: string;
+    email: string;
 }

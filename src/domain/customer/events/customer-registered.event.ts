@@ -6,5 +6,7 @@ export class CustomerRegisteredEvent extends DomainEvent {
    
     constructor(readonly id: Guid, readonly name: string, readonly email: string, readonly birthDate: Date) {
         super();
+        
+        this.aggregateId = id;
     }
 }

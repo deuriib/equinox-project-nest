@@ -1,6 +1,6 @@
 {
   "name": "equinox-project",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "",
   "author": "",
   "private": true,
@@ -21,6 +21,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
+    "@nartc/automapper": "^7.0.4",
     "@nestjs/common": "^8.0.0",
     "@nestjs/core": "^8.0.0",
     "@nestjs/cqrs": "^8.0.0",
@@ -31,6 +32,7 @@
     "fluent-validator-typescript": "^1.0.21",
     "guid-typescript": "^1.0.9",
     "luxon": "^2.0.2",
+    "nestjsx-automapper": "^3.1.4",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0"

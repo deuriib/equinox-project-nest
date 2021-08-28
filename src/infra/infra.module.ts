@@ -7,5 +7,4 @@ import {DomainModule} from "../domain/domain.module";
     exports: [],
 }) 
 export class InfraModule {
-        
  }
