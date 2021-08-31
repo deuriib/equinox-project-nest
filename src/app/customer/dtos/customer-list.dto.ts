@@ -1,8 +1,5 @@
-﻿import {IsDateString, IsEmail, IsNotEmpty} from "class-validator";
-import {Guid} from "guid-typescript";
-
-export class CustomerListDto {
-    id: Guid;
+﻿export class CustomerListDto {
+    id: string;
     name: string;
     email: string;
 }

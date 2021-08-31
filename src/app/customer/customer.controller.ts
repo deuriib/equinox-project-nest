@@ -1,9 +1,8 @@
 ﻿import {CustomerService} from "./services/customer.service";
 import {BadRequestException, Body, Controller, Get, HttpStatus, Post, Res} from "@nestjs/common";
 import {CreateCustomerDto} from "./dtos/create-customer.dto";
-import {response, Response} from "express";
+import {Response} from "express";
 import {CustomerListDto} from "./dtos/customer-list.dto";
-import {get} from "http";
 import {
     ApiBadRequestResponse, ApiBody,
     ApiConsumes,
@@ -12,11 +11,10 @@ import {
     ApiOkResponse,
     ApiProduces, ApiTags
 } from "@nestjs/swagger";
-import {Type} from "class-transformer";
 import {HttpExceptionResponse} from "../common/filters/http-exception-filter";
 
 @ApiHeader({
-    name: 'api-version',
+    name: 'Api-Version',
     description: 'Version of the API',
     example: '1'
 })
@@ -34,11 +32,11 @@ export class CustomerController {
 
     @ApiOkResponse({
         description: 'OK',
-        type: CustomerListDto,
+        type: [CustomerListDto],
     })
     
     @Get()
-    async getAllCustomers(@Res() res: Response): Promise<Response> {
+    async getAllCustomers(@Res() res: Response): Promise<Response<CustomerListDto[]>> {
         const customers = await this.customerService.getAllCustomers();
         return res.status(HttpStatus.OK).json(customers);
     }

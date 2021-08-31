@@ -2,20 +2,22 @@
 import {CustomerController} from "./customer/customer.controller";
 import {CustomerService} from "./customer/services/customer.service";
 import {DomainModule} from "src/domain/domain.module";
-import {InfraModule} from "src/infra/infra.module";
-import {AutomapperModule} from "nestjsx-automapper";
 
 import './common';
+import {AutomapperModule} from "nestjsx-automapper";
 
 @Module({
     imports: [
-        AutomapperModule.withMapper(),
+        AutomapperModule.withMapper({
+            useUndefined: true,
+            skipUnmappedAssertion: true,
+            throwError: false
+        }),
         DomainModule,
-        InfraModule,
     ],
     controllers: [CustomerController],
     providers: [CustomerService],
-    exports: [DomainModule, InfraModule]
+    exports: [AutomapperModule, DomainModule]
 })
 export class ApplicationModule {
 }

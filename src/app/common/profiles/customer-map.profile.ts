@@ -1,7 +1,8 @@
-﻿import {AutoMapper, mapFrom, ProfileBase} from "@nartc/automapper";
+﻿import {AutoMapper, ignore, mapFrom, ProfileBase} from "@nartc/automapper";
 import {Customer} from "../../../domain/customer/models/customer.model";
 import {CustomerListDto} from "../../customer/dtos/customer-list.dto";
 import {Profile} from "nestjsx-automapper";
+import { CustomerEntity } from "src/infra/data/entities/customer.entity";
 
 @Profile()
 export class CustomerMapProfile extends ProfileBase {
@@ -9,7 +10,7 @@ export class CustomerMapProfile extends ProfileBase {
         super();
 
         mapper.createMap(Customer, CustomerListDto)
-            .forMember(dst => dst.id, mapFrom(src => src.id))
+            .forMember(dst => dst.id, mapFrom(src => src.id.toString()))
             .forMember(dst => dst.name, mapFrom(src => src.name))
             .forMember(dst => dst.email, mapFrom(src => src.email));
     }

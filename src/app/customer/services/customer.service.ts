@@ -7,7 +7,6 @@ import {CustomerListDto} from "../dtos/customer-list.dto";
 import {GetAllCustomersQuery} from "src/domain/customer/queries/get-all-customers.query";
 import {InjectMapper} from "nestjsx-automapper";
 import {AutoMapper} from "@nartc/automapper";
-import {Customer} from "../../../domain/customer/models/customer.model";
 
 export interface ICustomerService {
     createCustomer(dto: CreateCustomerDto): Promise<ValidationContract>;
@@ -29,7 +28,7 @@ export class CustomerService implements ICustomerService {
 
     async getAllCustomers(): Promise<CustomerListDto[]> {
         const customers = await this.queryBus.execute(new GetAllCustomersQuery());
-        const customerListDto = this.mapper.mapArray(customers,CustomerListDto, Customer);
+        const customerListDto = this.mapper.mapArray(customers,CustomerListDto);
 
         return Promise.resolve(customerListDto);
     }

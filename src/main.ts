@@ -10,15 +10,15 @@ async function bootstrap() {
     app.enableCors({
         origin: ['http://localhost:3000'],
         methods: ['GET','POST','PUT','PATCH','DELETE', 'OPTIONS'],
-        allowedHeaders: ['Accept', 'Content-Type', 'api-version', 'Authorization'],
-        exposedHeaders: ['api-version']
+        allowedHeaders: ['Accept', 'Content-Type', 'Api-Version', 'Authorization'],
+        exposedHeaders: ['Api-Version']
     });
     app.setGlobalPrefix('api', {
         exclude: ['/'],
     })
     app.enableVersioning({
         type: VersioningType.HEADER,
-        header: 'api-version',
+        header: 'Api-Version',
     });
     app.useGlobalFilters(new HttpExceptionFilter());
     app.useGlobalPipes(new ValidationPipe({
@@ -53,7 +53,9 @@ async function ConfigSwagger(app: INestApplication): Promise<any> {
         swaggerOptions: {
             persistAuthorization: true,
         }
-    });
+    })
 }
 
-bootstrap().then(async (app) => console.info(`Running app in ${await app.getUrl() }`));
+bootstrap().then(async (app) => {
+    
+});
